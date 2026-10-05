@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central de Inteligência | Sistemas e Segurança da Informação</title>
+<style>
+  :root{--bg:#0d0d0d;--panel:#141414;--green:#00ff66;--dim:#0a6b33;--text:#e6e6e6;--muted:#9a9a9a;--amber:#ffcc00;--red:#ff3333}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Courier New',Courier,monospace;margin:0;padding:20px;line-height:1.55}
+  .container{max-width:860px;margin:0 auto}
+  h1,h2,h3{color:var(--green);margin:0 0 10px}
+  a{color:var(--green)}
+  code{background:#000;border:1px solid #333;padding:1px 6px;border-radius:3px;color:var(--green)}
+  /* Terminal */
+  #terminal{border:2px solid var(--green);padding:30px;border-radius:8px;box-shadow:0 0 18px rgba(0,255,102,.25);text-align:center;margin-top:8vh}
+  .hash-box{background:#1a1a1a;padding:12px;border-left:4px solid var(--green);font-size:1.3em;letter-spacing:3px;margin:20px 0;word-break:break-all}
+  .hint{font-size:.85em;color:var(--muted)}
+  input[type=password]{background:#000;color:var(--green);border:1px solid var(--green);padding:12px;font-family:inherit;width:60%;min-width:200px;border-radius:4px}
+  button,.btn{background:var(--green);color:#000;border:none;padding:10px 18px;font-weight:bold;font-family:inherit;cursor:pointer;border-radius:4px;text-decoration:none;display:inline-block;margin-top:10px}
+  button:hover,.btn:hover{background:#00cc52}
+  #status{margin-top:15px;font-weight:bold;min-height:1.4em}
+  /* Conteúdo */
+  #conteudo{display:none}
+  nav{position:sticky;top:0;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--dim);margin-bottom:20px;z-index:5;display:flex;gap:14px;flex-wrap:wrap;font-size:.9em}
+  .card{background:var(--panel);border:1px solid #333;border-left:4px solid var(--green);padding:20px;margin-bottom:22px;border-radius:6px}
+  .steps{counter-reset:s;list-style:none;padding:0}
+  .steps li{counter-increment:s;position:relative;padding:8px 0 8px 46px;border-bottom:1px dashed #2a2a2a}
+  .steps li:last-child{border:none}
+  .steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:6px;color:var(--dim);font-size:1.4em;font-weight:bold}
+  .warn{background:#1f1400;border:1px solid var(--amber);color:var(--amber);padding:14px;border-radius:6px;font-size:.88em;margin-top:16px}
+  .ok{background:#04170c;border:1px solid var(--dim);padding:14px;border-radius:6px;font-size:.9em;margin-top:16px}
+  .item{padding:10px 0;border-bottom:1px dashed #2a2a2a}
+  .item:last-child{border:none}
+  .tag{font-size:.72em;border:1px solid var(--dim);color:var(--green);padding:1px 7px;border-radius:10px;margin-left:6px;white-space:nowrap}
+  .tag.v{border-color:var(--amber);color:var(--amber)}
+  .item p{margin:3px 0 4px;color:var(--muted);font-size:.9em}
+  footer{text-align:center;font-size:.8em;color:#666;margin:30px 0 10px}
+  .btn.alt{background:#1a1a1a;color:var(--green);border:1px solid var(--green);margin-left:10px}
+  .tag.n{border-color:#666;color:#aaa}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- TERMINAL (Cifra de César ROT3) -->
+<div id="terminal">
+  <h2>[ TERMINAL DE SEGURANÇA RESTRITO ]</h2>
+  <p>Autenticação necessária para acessar os materiais de Segurança da Informação.</p>
+  <p><strong>STRING CRIPTOGRAFADA (Cifra de César, ROT3):</strong></p>
+  <div class="hash-box">123456Vhyhq</div>
+  <p class="hint">💡 Dica: desloque cada letra 3 posições para trás no alfabeto. Os números permanecem iguais.</p>
+  <div style="margin-top:20px">
+    <input type="password" id="inputChave" placeholder="Digite a chave decodificada..." autocomplete="off">
+    <button onclick="validarChave()">DECODIFICAR</button>
+  </div>
+  <div id="status"></div>
+</div>
+
+<!-- CONTEÚDO LIBERADO -->
+<div id="conteudo">
+  <h1>✔ ACESSO CONCEDIDO</h1>
+  <p class="hint">Central de recursos | Sistemas e Segurança da Informação</p>
+  <nav>
+    <a href="#slides">[1] slides</a><a href="#tutorial">[2] tutorial</a><a href="#opsec">[3] opsec</a><a href="#midia">[4] filmes e vídeos</a><a href="#aprender">[5] aprender mais</a>
+  </nav>
+
+  <!-- 1. SLIDES -->
+  <section class="card" id="slides">
+    <h2>1. Apresentação do grupo</h2>
+    <p>Baixe os slides usados na apresentação:</p>
+    <a class="btn" id="btnPdf" href="DarkWeb_SI_v2.pdf" download>📥 BAIXAR SLIDES (PDF)</a>
+    <a class="btn alt" id="btnVer" href="#" target="_blank" rel="noopener" style="display:none">🌐 VER ONLINE</a>
+  </section>
+
+  <!-- 2. TUTORIAL -->
+  <section class="card" id="tutorial">
+    <h2>2. Tutorial: como acessar a rede Tor com segurança</h2>
+    <p>Passo a passo educativo para navegar com privacidade e entender como a rede funciona na prática.</p>
+    <ol class="steps">
+      <li><strong>Baixe só do site oficial.</strong> Acesse <a href="https://www.torproject.org/download/" target="_blank" rel="noopener">torproject.org/download</a>. Versões de outros sites podem vir com malware, e esse é o erro mais comum de iniciantes.</li>
+      <li><strong>Instale e conecte.</strong> Abra o Tor Browser e clique em <code>Connect</code>. Se a sua rede bloquear o Tor, use a opção de <em>bridges</em> na própria tela de conexão.</li>
+      <li><strong>Ajuste o nível de segurança.</strong> No ícone de escudo, escolha <code>Safer</code> ou <code>Safest</code>. O nível <em>Safest</em> desativa o JavaScript, o que reduz a superfície de ataque (lembra do slide sobre sites .onion?).</li>
+      <li><strong>Confirme que está usando o Tor.</strong> Acesse <a href="https://check.torproject.org" target="_blank" rel="noopener">check.torproject.org</a>. A página informa se o seu tráfego está passando pela rede.</li>
+      <li><strong>Visite serviços .onion legítimos.</strong> Veículos de imprensa, buscadores e o Tor Project divulgam o próprio endereço <code>.onion</code> no site oficial. Para ver o SecureDrop em ação, consulte o diretório em <a href="https://securedrop.org/directory/" target="_blank" rel="noopener">securedrop.org/directory</a>.</li>
+      <li><strong>Mantenha tudo atualizado.</strong> Atualize o Tor Browser sempre que ele pedir. Falhas conhecidas são usadas para desanonimizar usuários.</li>
+    </ol>
+    <div class="ok"><strong>Boas práticas durante a navegação:</strong> não faça login em contas pessoais, não use seu nome real, não instale extensões, não maximize a janela (o tamanho da tela é uma pista de identificação) e não abra arquivos baixados enquanto estiver online.</div>
+    <div class="warn">⚠️ Usar o Tor é legal. O que pode ser crime são as ações praticadas na rede. Este tutorial <strong>não indica</strong> sites ou conteúdos ilícitos e o grupo desaconselha buscá-los.</div>
+  </section>
+
+  <!-- 3. OPSEC -->
+  <section class="card" id="opsec">
+    <h2>3. Como se proteger: guia rápido de OpSec</h2>
+    <div class="ok"><strong>O que é OpSec?</strong> É a sigla de <em>Operational Security</em> (Segurança Operacional): os hábitos que evitam revelar quem você é e o que você faz na internet. A ideia nasceu no meio militar e hoje vale para qualquer pessoa.</div>
+    <p style="margin-top:16px">Seis hábitos, do mais simples ao mais avançado:</p>
+    <ol class="steps">
+      <li><strong>Use o Tor Browser oficial.</strong><br>Ele esconde o seu endereço de internet (IP) dos sites que você visita.</li>
+      <li><strong>Ligue uma VPN antes de abrir o Tor.</strong><br>Assim o seu provedor de internet não fica sabendo que você usa o Tor.</li>
+      <li><strong>Escolha o nível de segurança "Safest".</strong><br>Ele desliga os scripts das páginas, porta de entrada de muitos ataques.</li>
+      <li><strong>Não misture identidades.</strong><br>Nada de entrar no seu e-mail, rede social ou banco enquanto navega no Tor.</li>
+      <li><strong>Use o Tails em situações de alto risco.</strong><br>É um sistema que roda de um pendrive e não deixa nada gravado no computador.</li>
+      <li><strong>Mantenha o básico em dia.</strong><br>Atualize os programas, use uma senha diferente em cada conta e ative a verificação em duas etapas.</li>
+    </ol>
+    <h3 style="margin-top:18px">Glossário rápido</h3>
+    <div class="item"><strong>IP</strong>: o "endereço" do seu dispositivo na internet.</div>
+    <div class="item"><strong>Provedor (ISP)</strong>: a empresa que fornece a sua internet, como Vivo, Claro ou TIM.</div>
+    <div class="item"><strong>VPN</strong>: serviço que cria um túnel criptografado e troca o seu IP pelo do servidor dele.</div>
+    <div class="item"><strong>Script (JavaScript)</strong>: código que roda dentro da página e pode ser usado em ataques.</div>
+  </section>
+
+  <!-- 4. MÍDIA -->
+  <section class="card" id="midia">
+    <h2>4. Filmes e vídeos</h2>
+    <h3 style="margin-top:14px">▶ No YouTube</h3>
+    <div id="listaYT"></div>
+    <h3 style="margin-top:22px">📺 No Pluto TV (grátis)</h3>
+    <p class="hint">O Pluto TV é gratuito, com anúncios, e não exige conta. O catálogo muda de tempos em tempos.</p>
+    <div id="listaPluto"></div>
+  </section>
+
+  <!-- 5. APRENDER -->
+  <section class="card" id="aprender">
+    <h2>5. Para aprender mais</h2>
+    <div class="item"><a href="https://www.torproject.org/" target="_blank" rel="noopener">Tor Project</a><p>Site oficial: downloads, documentação e explicação do funcionamento da rede.</p></div>
+    <div class="item"><a href="https://tails.net/" target="_blank" rel="noopener">Tails</a><p>O sistema operacional que roda em RAM e não deixa rastros.</p></div>
+    <div class="item"><a href="https://ssd.eff.org/" target="_blank" rel="noopener">EFF: Surveillance Self-Defense</a><p>Guias de autodefesa digital para jornalistas, ativistas e qualquer pessoa.</p></div>
+    <div class="item"><a href="https://cartilha.cert.br/" target="_blank" rel="noopener">Cartilha de Segurança para Internet (CERT.br)</a><p>Material gratuito, em português, sobre boas práticas de segurança.</p></div>
+  </section>
+
+  <div class="warn">
+    <strong>⚠️ AVISO DE ISENÇÃO DE RESPONSABILIDADE:</strong><br>
+    Este portal tem fins estritamente educacionais e acadêmicos, desenvolvido para a disciplina de <strong>Sistemas e Segurança da Informação</strong>. O grupo não incentiva, hospeda ou promove o uso de ferramentas de privacidade ou redes anônimas para atividades ilícitas, e não se responsabiliza por esse uso indevido.
+  </div>
+  <footer>Portal acadêmico | Gabriel, Juan, Daniel, Carlos e Ingrid</footer>
+</div>
+
+</div>
+
+<script>
+// ====== CONFIGURAÇÃO (edite só aqui) ======
+var CONFIG = {
+  // Cole o link de compartilhamento do Google Drive (Qualquer pessoa com o link). Se ficar vazio, usa o PDF da pasta.
+  pdf: ""
+};
+// Cifra de César: desloca letras em +3 (o desafio da plateia é fazer o caminho inverso)
+function rot3(t){
+  return t.replace(/[a-z]/gi, function(c){
+    var base = c <= 'Z' ? 65 : 97;
+    return String.fromCharCode((c.charCodeAt(0) - base + 3) % 26 + base);
+  });
+}
+function validarChave(){
+  var entrada = document.getElementById('inputChave').value.trim();
+  var status = document.getElementById('status');
+  if (rot3(entrada) === '123456Vhyhq') {
+    status.style.color = '#00ff66';
+    status.textContent = 'STATUS: Chave aceita! Carregando materiais...';
+    setTimeout(function(){
+      document.getElementById('terminal').style.display = 'none';
+      document.getElementById('conteudo').style.display = 'block';
+      window.scrollTo(0,0);
+    }, 1000);
+  } else {
+    status.style.color = '#ff3333';
+    status.textContent = 'STATUS: Chave incorreta! Lembre-se: deslocar 3 letras para trás.';
+  }
+}
+document.getElementById('inputChave').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') validarChave();
+});
+
+// Link do PDF (Drive ou local)
+(function(){
+  var u = CONFIG.pdf.trim(); if(!u) return;
+  var m = u.match(/\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/);
+  var b = document.getElementById('btnPdf'), v = document.getElementById('btnVer');
+  if (m) { b.href = 'https://drive.google.com/uc?export=download&id=' + m[1]; v.href = 'https://drive.google.com/file/d/' + m[1] + '/view'; v.style.display = 'inline-block'; }
+  else { b.href = u; }
+})();
+// Listas de filmes e vídeos
+var YT = [
+ {t:'Dark Web: o que realmente existe lá dentro (Easy Tech Podcast)', tag:'podcast com hacker ético', d:'Um hacker ético separa mito de realidade sobre a Dark Web e explica como esse ecossistema funciona de verdade.', u:'https://www.youtube.com/watch?v=lHVJ895dIoA'},
+ {t:'Dark Web: o lado obscuro da web (Documento Jovem Pan)', tag:'documentário brasileiro', d:'Crimes cibernéticos nacionais e internacionais e a atuação das polícias contra quadrilhas que vendem dados de cidadãos.', u:'https://www.youtube.com/watch?v=CIqco7LbUZ8'},
+ {t:'A Dark Web | Mercado ilegal', tag:'documentário', d:'Mostra o lado criminoso da internet: criminosos usando as mesmas plataformas do dia a dia para atividades ilícitas e perigosas.', u:'https://www.youtube.com/watch?v=Ka2o8qpvXJs'},
+ {t:'A Dark Web | O Império Bilionário', tag:'documentário', d:'Outro episódio da série A Dark Web, sobre o lado criminoso da rede.', u:'https://www.youtube.com/watch?v=I9iUhsXFonw'},
+ {t:'Dev Sênior Reage: Cicada 3301, é possível resolver?', tag:'playlist, canal Programador Lhama', d:'Análise técnica dos enigmas do Cicada: criptografia simétrica, segurança de dados e engenharia reversa na prática.', u:'https://www.youtube.com/playlist?list=PLAgbpJQADBGLsj6809gIQYNN0IlbHH8Q3'}
+];
+var PLUTO = [
+ {t:'Hackers', tag:'série documental', d:'Mostra o universo que nasceu com a era digital e contraria a ideia de que os hackers são sempre os vilões.', u:'https://pluto.tv/br/shows/hackers-br/'},
+ {t:'Investigação Criminal Digital', tag:'série', d:'Golpes, chantagens, invasões, roubo de dados e lavagem de dinheiro: os crimes virtuais e o desafio de combatê-los.', u:'https://pluto.tv/br/shows/investigacao-criminal-digital/'},
+ {t:'Dark Web: Cicada 3301', tag:'filme de ficção', d:'Thriller em que um hacker e seus amigos entram em um jogo de recrutamento de uma sociedade secreta da dark web. Inspirado no enigma do nosso estudo de caso.', u:'https://pluto.tv/br/movies/6751adc18d00c60014c7276c/'}
+];
+function item(i,label){
+  return '<div class="item"><strong>'+i.t+'</strong><span class="tag">'+i.tag+'</span><p>'+i.d+'</p><a href="'+i.u+'" target="_blank" rel="noopener">'+label+' ➔</a></div>';
+}
+document.getElementById('listaYT').innerHTML = YT.map(function(i){return item(i,'Assistir no YouTube');}).join('');
+document.getElementById('listaPluto').innerHTML = PLUTO.map(function(i){return item(i,'Assistir no Pluto TV');}).join('');
+</script>
+</body>
+</html>
